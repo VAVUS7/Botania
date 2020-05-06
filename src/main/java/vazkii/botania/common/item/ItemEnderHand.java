@@ -45,13 +45,18 @@ public class ItemEnderHand extends ItemMod implements IManaUsingItem, IBlockProv
 
 	@Override
 	public boolean itemInteractionForEntity(ItemStack stack, EntityPlayer iplayer, EntityLivingBase entity) {
-		if(ConfigHandler.enderPickpocketEnabled && entity instanceof EntityPlayer && ManaItemHandler.requestManaExact(stack, iplayer, COST_OTHER, false)) {
-			iplayer.displayGUIChest(((EntityPlayer) entity).getInventoryEnderChest());
-			ManaItemHandler.requestManaExact(stack, iplayer, COST_OTHER, true);
-			iplayer.worldObj.playSoundAtEntity(iplayer, "mob.endermen.portal", 1F, 1F);
-			return true;
-		}
-
+		
+		//
+		// Патч открытия эндер-сундука другого игрока
+		// Просто игнорируем возможность взаимодействия с другими сущностями
+		//
+		
+		// if(ConfigHandler.enderPickpocketEnabled && entity instanceof EntityPlayer && ManaItemHandler.requestManaExact(stack, iplayer, COST_OTHER, false)) {
+		// 	iplayer.displayGUIChest(((EntityPlayer) entity).getInventoryEnderChest());
+		// 	ManaItemHandler.requestManaExact(stack, iplayer, COST_OTHER, true);
+		// 	iplayer.worldObj.playSoundAtEntity(iplayer, "mob.endermen.portal", 1F, 1F);
+		// 	return true;
+		//}
 		return false;
 	}
 
